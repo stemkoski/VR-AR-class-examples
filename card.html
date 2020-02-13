@@ -1,0 +1,59 @@
+<!doctype HTML>
+<html>
+<head>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <script src="js/aframe.min.js"></script>
+    <script src="js/aframe-ar.js"></script>
+    <style>
+    #uiDiv 
+    {
+         background-image: url("images/frame.png");
+         background-repeat: no-repeat;
+         background-size: 100% 100%;
+    }
+    </style>
+</head>
+<body style="margin: 0px; overflow: hidden;">
+  
+<!-- set detectionMode and matrixCodeType to enable barcode marker detection and custom pattern files -->
+<div style="border: 4px solid yellow; position: fixed; top: 0px;  width:99%; height:99%; z-index: 1;" id="uiDiv">
+    <img src="images/circle-green.png" style="position: absolute; right: 10px; top: 10px; width:64px; height:64px; z-index: 999;" id="greenCircle" />
+    <img src="images/circle-red.png" style="position: absolute; left: 10px; bottom: 10px; width:64px; height:64px; z-index: 999;" id="redCircle" />
+    <a href="https://google.com">
+        <img src="images/circle-blue.png" target="_blank" style="position: absolute; right: 10px; bottom: 10px; width:64px; height:64px; z-index: 999;" />
+    </a>
+    <a href="http://www.stemkoski.net">This is a test.</a>
+</div>
+
+<script>
+    document.querySelector("#greenCircle").onclick = function() 
+    {
+         document.querySelector("#box").setAttribute("material", "color", "green");
+    };
+
+        document.querySelector("#redCircle").onclick = function() 
+    {
+         document.querySelector("#box").setAttribute("material", "color", "red");
+    };
+</script>
+
+<a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false;">
+
+    <a-assets>
+		<img id="grid" src="images/border.png" />
+		<img id="earth-flat" src="images/earth-flat.jpg" />
+		<img id="earth-sphere" src="images/earth-sphere.jpg" />
+	</a-assets>
+    
+    <a-marker type="pattern" url="data/kanji.patt">
+        <a-box id="box" position="0 0.5 0" 
+               material="src:#grid; color: red; transparent: true; opacity: 0.50;">
+        </a-box>
+    </a-marker>
+    
+    <a-entity camera></a-entity>
+    
+</a-scene>
+
+</body>
+</html>
